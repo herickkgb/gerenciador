@@ -17,9 +17,6 @@ import br.com.alura.gerenciador.dao.UsuarioDAO;
 @WebServlet(urlPatterns="/loguin")
 public class Loguin extends HttpServlet{
 	
-
-	private static final long serialVersionUID = 1L;
-
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) 
 							throws ServletException, IOException {
@@ -32,8 +29,8 @@ public class Loguin extends HttpServlet{
 			writer.println("<html><body> Usuario Invalido </body></html>");
 		}else {
 			Cookie cookie = new Cookie("usuario.logado", email);
-			resp.addCookie(cookie);
-			
+			cookie.setMaxAge(10 * 60);
+			resp.addCookie(cookie);	
 			writer.println("<html><body> Usuario Logado: " + usuario +" </body></html>");
 
 		}
